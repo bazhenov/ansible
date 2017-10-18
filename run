@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+PWD=$(pwd)
+docker run -it --rm -w /opt \
+	-v $PWD/invertory:/etc/ansible/hosts \
+	-v $PWD/ansible.cfg:/etc/ansible/ansible.cfg \
+	-v $PWD/.ssh:/root/.ssh \
+	-v $PWD:/opt \
+	itech/ansible $@

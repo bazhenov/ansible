@@ -1,0 +1,14 @@
+---
+- hosts: storage
+  remote_user: ansible
+  tasks:
+    - name: copy backup script
+      copy:
+        src: ./backup-photos.sh
+        dest: ~/backup-photos.sh
+    - name: copy udev rules
+      copy:
+        src: udev.rules
+        dest: /etc/udev/rules.d/backup-photos.rules
+      become: true 
+      become_user: root
