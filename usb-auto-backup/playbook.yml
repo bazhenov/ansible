@@ -6,6 +6,7 @@
       copy:
         src: ./backup-photos.sh
         dest: ~/backup-photos.sh
+        mode: 0755
     - name: copy udev rules
       copy:
         src: udev.rules
