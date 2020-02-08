@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 BACKUP_LOCATION="/mnt"
 DATE=`date "+%Y-%m-%d"`
 BACKUP_DIR="$BACKUP_LOCATION/backups/$DATE"
@@ -11,18 +12,7 @@ fi
 
 mkdir -p $BACKUP_DIR
 {
-	echo "Event triggered: $ACTION"
-	export
-	echo "============================"
-
-	MOUNT_POINT=`mktemp -d`
-
-	echo "Mount point is: $MOUNT_POINT"
-	mount -o ro $DEVNAME $MOUNT_POINT
-	ls -la $MOUNT_POINT
+	MOUNT_POINT=/run/media/bazhenov/Photos
 
 	rsync -av --delete --backup --backup-dir "$BACKUP_DIR" "$MOUNT_POINT/Photos.photoslibrary" "$BACKUP_LOCATION"
-
-	umount $MOUNT_POINT
-	rmdir -f $MOUNT_POINT
-} > $LOG &
+} | tee $LOG

@@ -1,1 +1,0 @@
-ACTION=="add", ENV{ID_FS_UUID}=="ec3f36c3-b893-30a7-b845-926b57ca1586", RUN+="/home/ansible/backup-photos.sh"
